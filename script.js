@@ -1,0 +1,52 @@
+const startButton = document.querySelector(".js-startButton");
+const stopButton = document.querySelector(".js-stopButton");
+const resetButton = document.querySelector(".js-resetButton");
+const sessionCounter = document.querySelector(".js-sessionCounter")
+const timeCounter = document.querySelector(".js-timeCounter");
+
+const numberFormat = (number) => {
+    return number < 10 ? "0" + number : number;
+}
+
+const timerDisplay = (minutes, seconds) => {
+    timeCounter.innerText = `${numberFormat(minutes)} : ${numberFormat(seconds)}`;
+}
+
+const timeCounting = (minutes, seconds, sessionCount) => {
+
+    const countingInterval = setInterval(() => {
+        
+        if(minutes === 0 && seconds === 0){
+            clearInterval(countingInterval)
+            sessionCount++;
+            sessionCounter.innerText = sessionCount;
+
+        } else 
+            if(seconds === 0){
+                seconds = 59;
+                minutes--;
+            } else {
+                seconds--;
+            }
+        timerDisplay(minutes, seconds);
+    }, 1000)
+};
+
+const startCounting = (minutes, seconds, sessionCount) => {
+    startButton.addEventListener("click", () => {
+        timeCounting(minutes, seconds, sessionCount);
+    });
+};
+
+const init = () => {
+    let minutes = 5;
+    let seconds = 0;
+    timerDisplay(minutes, seconds);
+
+    let sessionCount = 0;
+    sessionCounter.innerText = sessionCount;
+    startCounting(minutes, seconds, sessionCount);
+
+}
+
+init();
