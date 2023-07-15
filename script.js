@@ -29,12 +29,20 @@ const timeCounting = (minutes, seconds, sessionCount) => {
                 seconds--;
             }
         timerDisplay(minutes, seconds);
-    }, 1000)
+    }, 1000);
+    stopCounting(countingInterval);
 };
 
 const startCounting = (minutes, seconds, sessionCount) => {
     startButton.addEventListener("click", () => {
         timeCounting(minutes, seconds, sessionCount);
+    });
+};
+
+
+const stopCounting = (countingInterval) => {
+    stopButton.addEventListener("click", () => {
+        clearInterval(countingInterval);
     });
 };
 
