@@ -69,6 +69,16 @@ const stopCounting = (countingInterval, breakeInterval) => {
     });
 };
 
+const resetCouter = (minutes, seconds, sessionCount) => {
+    resetButton.addEventListener("click", () => {
+        minutes = 5;
+        seconds = 0;
+        sessionCount = 0;
+        timerDisplay(minutes, seconds)
+        sessionCounter.innerText = sessionCount;
+    })
+}
+
 const init = () => {
     let minutes = 5;
     let seconds = 0;
@@ -77,7 +87,7 @@ const init = () => {
     let sessionCount = 0;
     sessionCounter.innerText = sessionCount;
     startCounting(minutes, seconds, sessionCount);
-
+    resetCouter(minutes, seconds, sessionCount);
 }
 
 init();
