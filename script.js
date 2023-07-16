@@ -8,7 +8,6 @@ const numberFormat = (number) => {
 
 const timerDisplay = (minutes, seconds, sessionCount) => {
     const timeCounter = document.querySelector(".js-timeCounter");
-    // const sessionCounter = document.querySelector(".js-sessionCounter");
     timeCounter.innerHTML = `<p>${numberFormat(minutes)} : ${numberFormat(seconds)}</p>
     <p>Liczba sesji: <span class="sessionCounter js-sessionCounter">${sessionCount}</span></p>`;
 };
@@ -19,11 +18,9 @@ const timeCounting = (minutes, seconds, sessionCount) => {
         if(minutes === 0 && seconds === 0){
             clearInterval(countingInterval)
             sessionCount++;
-            // sessionCounter.innerText = sessionCount;
             minutes = 2;
             seconds = 0;
             breakeCounting(minutes, seconds, sessionCount);
-
         } else 
             if(seconds === 0){
                 seconds = 19;
@@ -38,7 +35,6 @@ const timeCounting = (minutes, seconds, sessionCount) => {
 
 const breakeCounting = (minutes, seconds, sessionCount) => {
     const breakeInterval = setInterval(() => {
-        
         if(minutes === 0 && seconds === 0){
             clearInterval(breakeInterval);
             minutes = 5;
@@ -57,7 +53,6 @@ const breakeCounting = (minutes, seconds, sessionCount) => {
 };
 
 const startCounting = (minutes, seconds, sessionCount) => {
-
     startButton.addEventListener("click", () => {
         timeCounting(minutes, seconds, sessionCount);
         startButton.setAttribute("disabled", "");
@@ -65,9 +60,7 @@ const startCounting = (minutes, seconds, sessionCount) => {
     });
 };
 
-
 const stopCounting = (countingInterval, breakeInterval) => {
-
     stopButton.addEventListener("click", () => {
         clearInterval(countingInterval);
         clearInterval(breakeInterval);
@@ -78,7 +71,6 @@ const stopCounting = (countingInterval, breakeInterval) => {
 };
 
 const resetCounter = (minutes, seconds, sessionCount) => {
-
     resetButton.addEventListener("click", () => {
         minutes = 5;
         seconds = 0;
@@ -86,7 +78,6 @@ const resetCounter = (minutes, seconds, sessionCount) => {
         timerDisplay(minutes, seconds, sessionCount);
 
         resetButton.setAttribute("disabled", "");
-
     });
 };
 
@@ -94,11 +85,10 @@ const init = () => {
     let minutes = 5;
     let seconds = 0;
     let sessionCount = 0;
+    
     timerDisplay(minutes, seconds, sessionCount);
-
     startCounting(minutes, seconds, sessionCount);
     resetCounter(minutes, seconds, sessionCount);
-
 };
 
 init();
