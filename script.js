@@ -1,10 +1,11 @@
+const pomodorTimer = document.querySelector(".js-pomodoroTimer");
 const startButton = document.querySelector(".js-startButton");
 const stopButton = document.querySelector(".js-stopButton");
 const resetButton = document.querySelector(".js-resetButton");
 const countingButtons = document.querySelector(".js-counterButtons");
 const statusCountingInfo = document.querySelector(".js-countingStatus");
 
-let pomodoroTime = 5;
+let pomodoroTime = 3;
 let shortBrakeTime = 1;
 let longBreakeTime = 2;
 let sessionsToLongBrake = 2;
@@ -16,10 +17,19 @@ const numberFormat = (number) => {
 };
 
 const statusDisplay = (countingStatus) => {
-    statusCountingInfo.innerHTML = `Status: ${countingStatus}`;
+    statusCountingInfo.innerHTML = `<p class="status status${toggleStatus(countingStatus)}">Status: ${countingStatus}</p>`;
 }
 
-statusDisplay();
+const toggleStatus = (countingStatus) => {
+    switch (countingStatus){
+        case "pomodoro":
+            return "--pomodoro";
+        case "short brake":
+            return "--shortBrake";
+        case "long brake":
+            return "--longBrake";
+    };
+};
 
 const toggleCountingStatus = () => {
 
@@ -33,17 +43,18 @@ const timerDisplay = (minutes, seconds, sessionCount) => {
 
 const timeCounting = (minutes, seconds, sessionCount, countingStatus) => {
     const countingInterval = setInterval(() => {
-        countingStatus = "pomodoro";
+        
         
         if(minutes === 0 && seconds === 0){
             clearInterval(countingInterval)
             sessionCount++;
             minutes = sessionCount === sessionsToLongBrake ? longBreakeTime : shortBrakeTime;
-            seconds = 0;
+            countingStatus = sessionCount === sessionsToLongBrake ? "long brake" : "short brake";
+
             breakeCounting(minutes, seconds, sessionCount, countingStatus);
         } else 
             if(seconds === 0){
-                seconds = 19;
+                seconds = 9;
                 minutes--;
             } else {
                 seconds--;
@@ -55,18 +66,17 @@ const timeCounting = (minutes, seconds, sessionCount, countingStatus) => {
 };
 
 const breakeCounting = (minutes, seconds, sessionCount, countingStatus) => {
-    countingStatus = sessionCount === sessionsToLongBrake ? "long brake" : "short brake";
     const breakeInterval = setInterval(() => {
         if(minutes === 0 && seconds === 0){
             clearInterval(breakeInterval);
             minutes = pomodoroTime;
-            seconds = 0;
             sessionCount = sessionCount === sessionsToLongBrake ? 0 : sessionCount;
-            timeCounting(minutes, seconds, sessionCount);
+            countingStatus = "pomodoro";
+            timeCounting(minutes, seconds, sessionCount, countingStatus);
         } else 
             if(seconds === 0){
                 minutes--;
-                seconds = 19;
+                seconds = 9;
             } else {
                 seconds--;
             }
