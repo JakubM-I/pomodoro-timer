@@ -42,12 +42,13 @@ const timerDisplay = (minutes, seconds, sessionCount) => {
 };
 
 const timeCounting = (minutes, seconds, sessionCount, countingStatus) => {
+    sessionCount++;
     const countingInterval = setInterval(() => {
         
         
         if(minutes === 0 && seconds === 0){
             clearInterval(countingInterval)
-            sessionCount++;
+            
             minutes = sessionCount === sessionsToLongBrake ? longBreakeTime : shortBrakeTime;
             countingStatus = sessionCount === sessionsToLongBrake ? "long brake" : "short brake";
 
@@ -88,6 +89,7 @@ const breakeCounting = (minutes, seconds, sessionCount, countingStatus) => {
 
 const startCounting = (minutes, seconds, sessionCount, countingStatus) => {
     startButton.addEventListener("click", () => {
+        
         timeCounting(minutes, seconds, sessionCount, countingStatus);
         startButton.setAttribute("disabled", "");
         stopButton.removeAttribute("disabled");
