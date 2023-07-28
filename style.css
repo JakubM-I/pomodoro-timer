@@ -1,0 +1,55 @@
+:root{
+    --buttonWidth: 55px;
+}
+
+.pomodoroTimer{
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid #000;
+    margin-inline: auto;
+    margin-block-start: 2em;
+    padding: 25px;
+}
+
+.timeCounter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.counterButtons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    max-width: calc((var(--buttonWidth) * 3) + 10px);
+    margin-inline: auto;
+}
+
+.counterButton{
+    flex-basis: 35%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: none;
+}
+
+.counterButton__reset{
+    flex-basis: 60%;
+}
+
+.status--pomodoro{
+    background-color: rgba(238, 35, 35, 0.797);
+}
+
+.status--shortBrake{
+    background-color: rgb(22, 179, 232);
+}
+
+.status--longBrake{
+    background-color: rgb(61, 194, 24);
+}
+
+.timeCounter{
+    font-size: 25px;
+}

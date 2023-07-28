@@ -31,10 +31,6 @@ const toggleStatus = (countingStatus) => {
     };
 };
 
-const toggleCountingStatus = () => {
-
-}
-
 const timerDisplay = (minutes, seconds, sessionCount) => {
     const timeCounter = document.querySelector(".js-timeCounter");
     timeCounter.innerHTML = `<p>${numberFormat(minutes)} : ${numberFormat(seconds)}</p>
@@ -44,14 +40,10 @@ const timerDisplay = (minutes, seconds, sessionCount) => {
 const timeCounting = (minutes, seconds, sessionCount, countingStatus) => {
     sessionCount++;
     const countingInterval = setInterval(() => {
-        
-        
         if(minutes === 0 && seconds === 0){
             clearInterval(countingInterval)
-            
             minutes = sessionCount === sessionsToLongBrake ? longBreakeTime : shortBrakeTime;
             countingStatus = sessionCount === sessionsToLongBrake ? "long brake" : "short brake";
-
             breakeCounting(minutes, seconds, sessionCount, countingStatus);
         } else 
             if(seconds === 0){
@@ -89,7 +81,6 @@ const breakeCounting = (minutes, seconds, sessionCount, countingStatus) => {
 
 const startCounting = (minutes, seconds, sessionCount, countingStatus) => {
     startButton.addEventListener("click", () => {
-        
         timeCounting(minutes, seconds, sessionCount, countingStatus);
         startButton.setAttribute("disabled", "");
         stopButton.removeAttribute("disabled");
@@ -101,7 +92,7 @@ const stopCounting = (countingInterval, breakeInterval) => {
         clearInterval(countingInterval);
         clearInterval(breakeInterval);
         stopButton.setAttribute("disabled", "");
-        startButton.removeAttribute("disabled");
+        // startButton.removeAttribute("disabled");
         resetButton.removeAttribute("disabled");
     });
 };
@@ -115,7 +106,7 @@ const resetCounter = (minutes, seconds, sessionCount, countingStatus) => {
 
         countingStatus = "pomodoro";
         statusDisplay(countingStatus);
-
+        startButton.removeAttribute("disabled");
         resetButton.setAttribute("disabled", "");
     });
 };

@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>PomoDoIt - Pomodoro Timer</title>
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" defer></script>
 </head>
 <body>
-    <div class="pomodoroTimer">
-        <div class="countingStatus js-countingStatus"></div>
-        <div class="timeCounter js-timeCounter"></div>
-        <div class="counterButtons js-counterButtons" >
-          <button class="startButton js-startButton">Start</button>
-          <button class="stopButton js-stopButton" disabled>Stop</button>
-        </div>
-        <div>
-          <button class="resetButton js-resetButton" disabled>Reset</button>
-        </div>
+  <div class="pomodoroTimer js-pomodoroTimer">
+    <div class="timerHeader">
+      <h1 class="timerHeader__title">PomoDoIt - Pomodoro Timer</h1>
+    </div>
+    <main>
+      <div class="countingStatus js-countingStatus"></div>
+      <div class="timeCounter js-timeCounter"></div>
+      <div class="counterButtons js-counterButtons">
+        <button class="counterButton startButton js-startButton">Start</button>
+        <button class="counterButton stopButton js-stopButton" disabled>Stop</button>
+        <button class="counterButton counterButton__reset js-resetButton" disabled>Reset</button>
       </div>
+    </main>
+  </div>
 </body>
 </html>
