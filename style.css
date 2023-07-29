@@ -1,3 +1,12 @@
+html{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+*, ::after, ::before{
+    box-sizing: inherit;
+}
+
 :root{
     --buttonWidth: 55px;
 }
@@ -9,12 +18,40 @@
     margin-inline: auto;
     margin-block-start: 2em;
     padding: 25px;
+    background-color: #eb16167d;
+    /* background-image: url("https://source.unsplash.com/featured/1000x600");
+    background-position: center;
+    background-size: contain; */
 }
 
-.timeCounter{
+
+.pomodoroTimer--pomodoro{
+    background-color: #eb16167d;
+}
+
+.pomodoroTimer--shortBrake{
+    background-color: rgb(22, 179, 232);
+}
+
+.pomodoroTimer--longBrake{
+    background-color: rgb(61, 194, 24);
+}
+
+.timeCounterDisplay{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.timeCounter{
+    font-size: 45px;
+    font-weight: 700;
+    margin-block-end: 1em;
+}
+
+.sessionCounter{
+    font-size: 28px;
+    font-weight: 500;
 }
 
 .counterButtons{
@@ -32,24 +69,38 @@
     padding: 10px 15px;
     border-radius: 15px;
     border: none;
+    cursor: pointer;
 }
 
 .counterButton__reset{
     flex-basis: 60%;
 }
 
+.countingStatus{
+    display: flex;
+    justify-content: center;
+}
+
+.status{
+    font-size: 20px;
+    padding: 8px 10px;
+    width: fit-content;
+    border-radius: 15px;
+    margin: 0;
+    /* background-color: #ee232310; */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    /* text-transform: ca; */
+}
+
 .status--pomodoro{
-    background-color: rgba(238, 35, 35, 0.797);
+    background-color: #eb16167d;
 }
 
 .status--shortBrake{
-    background-color: rgb(22, 179, 232);
+    background-color: #2e90b07a;
 }
 
 .status--longBrake{
-    background-color: rgb(61, 194, 24);
-}
-
-.timeCounter{
-    font-size: 25px;
+    background-color: #57ea2f81;
 }
