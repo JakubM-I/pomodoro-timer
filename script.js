@@ -24,14 +24,17 @@ let settings = {
 let minutes = settings.pomodoroTime;
 let shortBrakeTime = settings.shortBrakeTime;
 let longBreakeTime = settings.longBreakeTime;
-let sessionsToLongBrake = settings.sessionsToLongBrake
+let sessionsToLongBrake = settings.sessionsToLongBrake;
 let seconds = 0;
 let sessionCount = 0;
+let countingStatus = "pomodoro";
 
 const updateSettings = () => {
     settings = {
         ...settings,
         pomodoroTime: +pomodorTimeInput.value,
+        shortBrakeTime: +shortBrakeTimeInput.value,
+        longBreakeTime: +longBreakeTimeInput.value,
         sessionsToLongBrake: +timeToBreakeInput.value,
     }
     minutes = settings.pomodoroTime;
@@ -105,13 +108,14 @@ const timerDisplay = () => {
 //         </p>`;
 // };
 
-const timeCounting = (countingStatus) => {
+const timeCounting = () => {
     sessionCount++;
     const countingInterval = setInterval(() => {
         if(minutes === 0 && seconds === 0){
             clearInterval(countingInterval)
             minutes = sessionCount === settings.sessionsToLongBrake ? settings.longBreakeTime : settings.shortBrakeTime;
             countingStatus = sessionCount === settings.sessionsToLongBrake ? "long brake" : "short brake";
+            console.log(countingStatus);
             breakeCounting(minutes, seconds, sessionCount, countingStatus);
         } else 
             if(seconds === 0){
@@ -127,13 +131,14 @@ const timeCounting = (countingStatus) => {
     stopCounting(countingInterval);
 };
 
-const breakeCounting = (countingStatus) => {
+const breakeCounting = () => {
     const breakeInterval = setInterval(() => {
         if(minutes === 0 && seconds === 0){
             clearInterval(breakeInterval);
             minutes = settings.pomodoroTime;
             sessionCount = sessionCount === settings.sessionsToLongBrake ? 0 : sessionCount;
             countingStatus = "pomodoro";
+            console.log(countingStatus);
             statusColorChange(countingStatus);
             timeCounting(minutes, seconds, sessionCount, countingStatus);
         } else 
@@ -150,7 +155,7 @@ const breakeCounting = (countingStatus) => {
     stopCounting(breakeInterval);
 };
 
-const startCounting = (countingStatus) => {
+const startCounting = () => {
     startButton.addEventListener("click", () => {
         timeCounting(minutes, seconds, sessionCount, countingStatus);
         startButton.setAttribute("disabled", "");
@@ -168,7 +173,7 @@ const stopCounting = (countingInterval, breakeInterval) => {
     });
 };
 
-const resetCounter = (countingStatus) => {
+const resetCounter = () => {
     resetButton.addEventListener("click", () => {
         minutes = settings.pomodoroTime;
         seconds = 0;
@@ -195,13 +200,16 @@ const init = () => {
 
     
 
-    let countingStatus = "pomodoro";
+    
     statusDisplay(countingStatus);
     statusColorChange(countingStatus);
     
     timerDisplay();
-    startCounting(minutes, seconds, sessionCount, countingStatus);
+    startCounting();
     resetCounter(minutes, seconds, sessionCount, countingStatus);
 };
 
 init();
+
+
+// minutes, seconds, sessionCount, countingStatus
