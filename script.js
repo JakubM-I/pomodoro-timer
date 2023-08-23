@@ -1,17 +1,12 @@
-const pomodorTimer = document.querySelector(".js-pomodoroTimer");
+const pomodoroTimer = document.querySelector(".js-pomodoroTimer");
 const startButton = document.querySelector(".js-startButton");
 const stopButton = document.querySelector(".js-stopButton");
 const resetButton = document.querySelector(".js-resetButton");
 const countingButtons = document.querySelector(".js-counterButtons");
-const statusCountingInfo = document.querySelector(".js-countingStatus");
 const pomodorTimeInput = document.querySelector(".js-inputPomodoroTime");
-const form = document.querySelector(".js-form");
-const formButton = document.querySelector(".js-formButton");
 const timeToBreakeInput = document.querySelector(".js-inputTimeToBrake");
 const shortBrakeTimeInput = document.querySelector(".js-inputShortBrake");
 const longBreakeTimeInput = document.querySelector(".js-inputLongBrake")
-
-// let pomodoroTime = 3;
 
 
 let settings = {
@@ -46,7 +41,8 @@ const updateSettings = () => {
 
 
 const settingsChange = () => {
-    form.addEventListener("submit", (e) => {
+    const settingsForm = document.querySelector(".js-form");
+    settingsForm.addEventListener("submit", (e) => {
         e.preventDefault();
         updateSettings();
     })
@@ -58,20 +54,17 @@ const numberFormat = (number) => {
 };
 
 const statusDisplay = (countingStatus) => {
+    const statusCountingInfo = document.querySelector(".js-countingStatus");
     statusCountingInfo.innerHTML = `<p class="status status${toggleStatus(countingStatus)}">${countingStatus}</p>`;
 }
 
 const statusColorChange = (countingStatus) => {
     if (countingStatus === "pomodoro") {
-        pomodorTimer.classList.add("pomodoroTimer--pomodoro");
-        pomodorTimer.classList.remove("pomodoroTimer--shortBrake");
-        pomodorTimer.classList.remove("pomodoroTimer--longBrake");
+        pomodoroTimer.style.backgroundColor = "#eb16167d"
     } else if (countingStatus === "short brake") {
-        pomodorTimer.classList.add("pomodoroTimer--shortBrake");
-        pomodorTimer.classList.remove("pomodoroTimer--pomodoro");
+        pomodoroTimer.style.backgroundColor = "#16b3e8"
     } else if (countingStatus === "long brake"){
-        pomodorTimer.classList.add("pomodoroTimer--longBrake");
-        pomodorTimer.classList.remove("pomodoroTimer--pomodoro");
+        pomodoroTimer.style.backgroundColor = "#3dc218"
     }
 }
 
@@ -97,17 +90,6 @@ const timerDisplay = () => {
         </p>`;
 };
 
-// const timerDisplay = (minutes, seconds, sessionCount) => {
-//     const timeCounter = document.querySelector(".js-timeCounter");
-//     timeCounter.innerHTML = `
-//         <p class="timeCounter">
-//             ${numberFormat(minutes)} : ${numberFormat(seconds)}
-//         </p>
-//         <p class="sessionCounter">
-//             Sessions: <span js-sessionCounter">${sessionCount} / ${sessionsToLongBrake}</span>
-//         </p>`;
-// };
-
 const timeCounting = () => {
     sessionCount++;
     const countingInterval = setInterval(() => {
@@ -115,7 +97,6 @@ const timeCounting = () => {
             clearInterval(countingInterval)
             minutes = sessionCount === settings.sessionsToLongBrake ? settings.longBreakeTime : settings.shortBrakeTime;
             countingStatus = sessionCount === settings.sessionsToLongBrake ? "long brake" : "short brake";
-            console.log(countingStatus);
             breakeCounting(minutes, seconds, sessionCount, countingStatus);
         } else 
             if(seconds === 0){
@@ -138,7 +119,6 @@ const breakeCounting = () => {
             minutes = settings.pomodoroTime;
             sessionCount = sessionCount === settings.sessionsToLongBrake ? 0 : sessionCount;
             countingStatus = "pomodoro";
-            console.log(countingStatus);
             statusColorChange(countingStatus);
             timeCounting(minutes, seconds, sessionCount, countingStatus);
         } else 
@@ -149,8 +129,7 @@ const breakeCounting = () => {
                 seconds--;
             }
         timerDisplay(minutes, seconds, sessionCount);
-        statusDisplay(countingStatus);
-        
+        statusDisplay(countingStatus);        
     }, 1000);
     stopCounting(breakeInterval);
 };
@@ -168,7 +147,6 @@ const stopCounting = (countingInterval, breakeInterval) => {
         clearInterval(countingInterval);
         clearInterval(breakeInterval);
         stopButton.setAttribute("disabled", "");
-        // startButton.removeAttribute("disabled");
         resetButton.removeAttribute("disabled");
     });
 };
@@ -188,25 +166,24 @@ const resetCounter = () => {
     });
 };
 
+const settingsOpen = () => {
+    const settingsButton = document.querySelector(".js-settingsButton");
+    settingsButton.addEventListener("click", () => {
+        document.querySelector(".js-settings").classList.remove("pomodoroSettings--disabled")
+    })
+}
 
 
 const init = () => {
     settingsChange();
-    
-    // let {pomodoroTime: minutes} = settings;
-    
-    // let minutes = settings.pomodoroTime;
-    
+    settingsOpen()
 
-    
-
-    
     statusDisplay(countingStatus);
     statusColorChange(countingStatus);
     
     timerDisplay();
     startCounting();
-    resetCounter(minutes, seconds, sessionCount, countingStatus);
+    resetCounter();
 };
 
 init();

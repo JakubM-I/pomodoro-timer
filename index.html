@@ -15,7 +15,7 @@
   <div class="pomodoroTimer js-pomodoroTimer">
     <div class="timerHeader">
       <div class="timerMenu">
-       <span class="timerMenu__button"> <img class="timerMenu__icon" src="/graphics/settings-icon.png" alt=""><span>Settings</span></span>
+       <span class="timerMenu__button js-settingsButton"> <img class="timerMenu__icon" src="/graphics/settings-icon.png" alt=""><span>Settings</span></span>
       </div>
       <h1 class="timerHeader__title">PomoDoIt - Pomodoro Timer</h1>
     </div>
@@ -23,25 +23,27 @@
       <div class="countingStatus js-countingStatus"></div>
       <div class="timeCounterDisplay js-timeCounter"></div>
       <div class="counterButtons js-counterButtons">
-        <!-- <button class="counterButton startButton js-startButton">Start</button>
+        <button class="counterButton startButton js-startButton">Start</button>
         <button class="counterButton stopButton js-stopButton" disabled>Stop</button>
-        <button class="counterButton counterButton__reset js-resetButton" disabled>Reset</button> -->
+        <button class="counterButton counterButton__reset js-resetButton" disabled>Reset</button>
       </div>
     </main>
   </div>
-  <div>
+  <div class="pomodoroSettings pomodoroSettings--disabled js-settings">
     <form class="js-form" action="">
-      <p>Pomodoro Time</p>
-      <input class="js-inputPomodoroTime" type="number" value="3"/>
-      <p>Short breake time</p>
-      <input class="js-inputShortBrake" type="number" value="1"/>
-      <p>Long breake time</p>
-      <input class="js-inputLongBrake" type="number" value="2"/>
-      <p>Time to long breake</p>
-      <input class="js-inputTimeToBrake" type="number" value="2" />
-      <button class="js-formButton">Zapisz</button>
-    </form>
+      <div>
+        <p>Pomodoro Time</p>
+        <input class="js-inputPomodoroTime" type="number" value="3"/>
+        <p>Short breake time</p>
+        <input class="js-inputShortBrake" type="number" value="1"/>
+        <p>Long breake time</p>
+        <input class="js-inputLongBrake" type="number" value="2"/>
+        <p>Time to long breake</p>
+        <input class="js-inputTimeToBrake" type="number" value="2" />
+      </div>
 
+      <button class="js-saveSettingsButton">Zapisz</button>
+    </form>
   </div>
 </body>
 </html>
