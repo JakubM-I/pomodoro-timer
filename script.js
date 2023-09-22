@@ -166,16 +166,27 @@ const resetCounter = () => {
     });
 };
 
+// const settingsOpen = (settingsWindow) => {
+//     document.querySelector(".js-settingsButton").addEventListener("click", () => {
+//         settingsWindow.classList.remove("pomodoroSettings--disabled");
+//     });
+// };
+
 const settingsOpen = (settingsWindow) => {
-    const settingsButton = document.querySelector(".js-settingsButton");
-    settingsButton.addEventListener("click", () => {
-        settingsWindow.classList.remove("pomodoroSettings--disabled");
+    document.querySelector(".js-settingsButton").addEventListener("click", () => {
+        settingsWindow.showModal();
     });
 };
 
+// const settingsClose = (settingsWindow) => {
+//     document.querySelector(".js-closeSettingsButton").addEventListener("click", () =>{
+//         settingsWindow.classList.add("pomodoroSettings--disabled");
+//     });
+// };
+
 const settingsClose = (settingsWindow) => {
     document.querySelector(".js-closeSettingsButton").addEventListener("click", () =>{
-        settingsWindow.classList.add("pomodoroSettings--disabled");
+        settingsWindow.close();
     });
 };
 
