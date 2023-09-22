@@ -166,17 +166,25 @@ const resetCounter = () => {
     });
 };
 
-const settingsOpen = () => {
+const settingsOpen = (settingsWindow) => {
     const settingsButton = document.querySelector(".js-settingsButton");
     settingsButton.addEventListener("click", () => {
-        document.querySelector(".js-settings").classList.remove("pomodoroSettings--disabled")
-    })
-}
+        settingsWindow.classList.remove("pomodoroSettings--disabled");
+    });
+};
+
+const settingsClose = (settingsWindow) => {
+    document.querySelector(".js-closeSettingsButton").addEventListener("click", () =>{
+        settingsWindow.classList.add("pomodoroSettings--disabled");
+    });
+};
 
 
 const init = () => {
     settingsChange();
-    settingsOpen()
+    const settingsWindow = document.querySelector(".js-settings")
+    settingsOpen(settingsWindow);
+    settingsClose(settingsWindow);
 
     statusDisplay(countingStatus);
     statusColorChange(countingStatus);

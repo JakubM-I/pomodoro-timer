@@ -28,22 +28,24 @@
         <button class="counterButton counterButton__reset js-resetButton" disabled>Reset</button>
       </div>
     </main>
+    <div class="pomodoroSettings pomodoroSettings--disabled js-settings">
+      <div><button class="js-closeSettingsButton">X</button></div>
+      <form class="js-form" action="">
+        <div>
+          <p>Pomodoro Time</p>
+          <input class="js-inputPomodoroTime" type="number" value="3"/>
+          <p>Short breake time</p>
+          <input class="js-inputShortBrake" type="number" value="1"/>
+          <p>Long breake time</p>
+          <input class="js-inputLongBrake" type="number" value="2"/>
+          <p>Time to long breake</p>
+          <input class="js-inputTimeToBrake" type="number" value="2" />
+        </div>
+  
+        <button class="js-saveSettingsButton">Zapisz</button>
+      </form>
+    </div>
   </div>
-  <div class="pomodoroSettings pomodoroSettings--disabled js-settings">
-    <form class="js-form" action="">
-      <div>
-        <p>Pomodoro Time</p>
-        <input class="js-inputPomodoroTime" type="number" value="3"/>
-        <p>Short breake time</p>
-        <input class="js-inputShortBrake" type="number" value="1"/>
-        <p>Long breake time</p>
-        <input class="js-inputLongBrake" type="number" value="2"/>
-        <p>Time to long breake</p>
-        <input class="js-inputTimeToBrake" type="number" value="2" />
-      </div>
 
-      <button class="js-saveSettingsButton">Zapisz</button>
-    </form>
-  </div>
 </body>
 </html>
