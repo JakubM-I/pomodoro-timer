@@ -144,7 +144,7 @@ html{
 .pomodoroSettings{
     border: 1px solid #000;
     /* width: fit-÷100%; */
-    padding: 10px;
+    padding: 20px;
     position: absolute;
     top: 10px;
     left: 5px;
@@ -152,6 +152,57 @@ html{
     background: #fff;
 }
 
+.pomodoroSettings::backdrop{
+    background: #000;
+    opacity: .5;
+}
 .pomodoroSettings--disabled{
     display: none;
+}
+
+.settingsForm{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 15px;
+    margin-block-end: 20px;
+}
+
+.settingsItem{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.itemLabel{
+    display: block;
+    flex-basis: 100px;
+    flex-shrink: 0;
+
+}
+
+.itemInput{
+    flex-basis: 40px;
+    flex-grow: 0;
+}
+
+.buttonWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.saveSettingsButton{
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.closeButtonWrapper{
+    display: flex;
+    justify-content: flex-end;
+    margin-block-end: 20px;
+}
+.closeSettingsButton{
+    background: none;
+    border: none;
+    cursor: pointer;
 }
